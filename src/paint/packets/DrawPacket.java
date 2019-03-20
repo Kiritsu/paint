@@ -1,7 +1,7 @@
-package paintChatServer.packets;
+package paint.packets;
 
-import paintChatServer.enums.DrawType;
-import paintChatServer.exceptions.UnknownPacketException;
+import paint.enums.DrawType;
+import paint.exceptions.UnknownPacketException;
 
 /**
  * Represents a draw packet.

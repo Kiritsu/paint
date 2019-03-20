@@ -1,4 +1,4 @@
-package paintChatServer.enums;
+package paint.enums;
 
 /**
  * Represents the type of a draw.

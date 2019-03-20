@@ -1,4 +1,4 @@
-package paintChatServer.packets;
+package paint.packets;
 
 /**
  * Reprensents a chat packet.

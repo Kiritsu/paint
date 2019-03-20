@@ -1,4 +1,4 @@
-package paintChatServer.exceptions;
+package paint.exceptions;
 
 /**
  * Exception that is being thrown when a parse of packet was unsuccessfull.

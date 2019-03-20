@@ -1,4 +1,4 @@
-package paintChatServer.enums;
+package paint.enums;
 
 /**
  * Represents the kind of log.

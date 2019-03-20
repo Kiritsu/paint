@@ -67,7 +67,7 @@ public class DrawPacket extends PacketBase {
         String[] values = content.split(" ");
 
         if (values.length == 7) {
-            drawType = Enum.valueOf(DrawType.class, values[0]);
+            drawType = DrawType.values()[Integer.valueOf(values[0])];
             fill = !values[1].equals("0");
             colour = Integer.parseInt(values[2], 16);
             x1 = Integer.parseInt(values[3], 10);
@@ -75,7 +75,7 @@ public class DrawPacket extends PacketBase {
             y1 = Integer.parseInt(values[5], 10);
             y2 = Integer.parseInt(values[6], 10);
         } else if (values.length == 5) {
-            drawType = Enum.valueOf(DrawType.class, values[0]);
+            drawType = DrawType.values()[Integer.valueOf(values[0])];
             colour = Integer.parseInt(values[1], 16);
             x1 = Integer.parseInt(values[2], 10);
             y1 = Integer.parseInt(values[3], 10);

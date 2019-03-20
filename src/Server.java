@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -11,12 +13,22 @@ public class Server {
     /**
      * Represents the list of every client.
      */
-    private ArrayList<Client> clients;
+    private ArrayList<Socket> clients;
 
     /**
      * ServerSocket that will handle client's connections and sending/receiving packets.
      */
-    private ServerSocket server;
+    private ServerSocket serverSocket;
+
+    /**
+     * Service that will handle client's connection.
+     */
+    private ClientAcceptorService clientAcceptorService;
+
+    /**
+     * Service that will handle client's timeout.
+     */
+    private ClientTimeoutService clientTimeoutService;
 
     /**
      * Indicates whether the server must be stopped.
@@ -41,20 +53,72 @@ public class Server {
      */
     public Server(String address, short port) throws IOException {
         this.clients = new ArrayList<>();
+        this.clientAcceptorService = new ClientAcceptorService(this);
+        this.clientTimeoutService = new ClientTimeoutService(this);
+
         this.quitRequested = false;
 
         this.address = address;
         this.port = port;
 
-        this.server = new ServerSocket(this.port);
+        this.serverSocket = new ServerSocket(this.port);
+
+        Logger.println(LogLevel.Info, "Server", "Server initialized.");
     }
 
     /**
-     * Starts the server and starts listening for new clients.
+     * Starts the server and starts the different services.
      * @throws IOException If an I/O error occurs when listening.
      */
     public void startServer() throws IOException {
+        this.clientAcceptorService.start();
+        this.clientTimeoutService.start();
 
+        Logger.println(LogLevel.Info, "Server", "Server started.");
+    }
+
+    /**
+     * Adds a client to our list of clients.
+     * @param client Instance of a client.
+     */
+    public void addClient(Socket client) {
+        if (!this.clients.contains(client)) {
+            this.clients.add(client);
+
+            Logger.println(LogLevel.Debug, "Server",
+                    "A client has been added.");
+        } else {
+            Logger.println(LogLevel.Error, "Server",
+                    "Unable to add a client to the ArrayList because it already contains it.");
+        }
+    }
+
+    /**
+     * Returns the different clients.
+     */
+    public ArrayList<Socket> getClients() {
+        return this.clients;
+    }
+
+    /**
+     * Updates our list of clients to only keep connected and active sockets.
+     */
+    public void updateClients(ArrayList<Socket> clients) {
+        this.clients = new ArrayList<>(clients);
+    }
+
+    /**
+     * Returns the server socket.
+     */
+    public ServerSocket getServerSocket() {
+        return this.serverSocket;
+    }
+
+    /**
+     * Indicates if cancellation is requested.
+     */
+    public boolean isQuitRequested() {
+        return this.quitRequested;
     }
 
     /**
@@ -63,5 +127,9 @@ public class Server {
     @Override
     public String toString() {
         return "Server bound to " + address + ":" + port + " | " + clients.size() + " clients connected.";
+    }
+
+    public static void main(String[] args) throws IOException {
+        new Server("localhost", (short) 8000).startServer();
     }
 }

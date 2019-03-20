@@ -4,6 +4,9 @@ import paintChatServer.Logger;
 import paintChatServer.Server;
 import paintChatServer.enums.LogLevel;
 import paintChatServer.exceptions.UnknownPacketException;
+import paintChatServer.packets.ChatPacket;
+import paintChatServer.packets.DrawPacket;
+import paintChatServer.packets.PacketBase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -49,13 +52,14 @@ public class ClientListenerService extends Thread {
     public void run() {
         while (!server.isQuitRequested()) {
             try {
-                PacketBase packet = new PacketBase(reader.readLine());
-                switch (packet.getType()) {
-                    case Chat:
-                        packet = packet.toChatPacket();
+                String content = reader.readLine();
+                PacketBase packet = null;
+                switch (content.charAt(0)) {
+                    case '0':
+                        packet = new ChatPacket(content);
                         break;
-                    case Paint:
-                        packet = packet.toDrawPacket();
+                    case '1':
+                        packet = new DrawPacket(content);
                         break;
                 }
 
@@ -63,10 +67,6 @@ public class ClientListenerService extends Thread {
             } catch (IOException e) {
                 break;
             } catch (UnknownPacketException e) {
-                e.printStackTrace();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

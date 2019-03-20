@@ -2,6 +2,7 @@ package paintChatServer;
 
 import paintChatServer.enums.LogLevel;
 import paintChatServer.packets.ChatPacket;
+import paintChatServer.packets.DrawPacket;
 import paintChatServer.services.ClientMessageService;
 
 import java.io.IOException;
@@ -63,6 +64,8 @@ public class Client {
         this.clientMessageService.start();
 
         this.writer = new PrintWriter(this.socket.getOutputStream());
+
+        sendMessage("Salut les gars !!!");
     }
 
     /**
@@ -77,9 +80,18 @@ public class Client {
 
     /**
      * Method called when a packet has been received and handled in the chat.
+     * @param packet Packet to handle.
      */
     public void updateChatUi(ChatPacket packet) {
-        Logger.println(LogLevel.Info, "Packet Received", "Message Received: " + packet);
+        Logger.println(LogLevel.Info, "Packet Received", "Message Received: " + packet.getMessage());
+    }
+
+    /**
+     * Method called when a packet has been received and handled in the draw window.
+     * @param packet Packet to handle.
+     */
+    public void updateDrawUi(DrawPacket packet) {
+        Logger.println(LogLevel.Info, "Packet Received", "Draw received: " + packet.toString());
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {

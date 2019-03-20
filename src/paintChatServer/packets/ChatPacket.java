@@ -1,7 +1,5 @@
 package paintChatServer.packets;
 
-import paintChatServer.enums.PacketType;
-
 /**
  * Reprensents a chat packet.
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
@@ -22,11 +20,11 @@ public class ChatPacket extends PacketBase {
      * Returns the message sent in the tchat.
      */
     public String getMessage() {
-        return super.content;
+        return super.content.substring(2);
     }
 
     @Override
     public String toString() {
-        return "0 " + super.content;
+        return super.content;
     }
 }

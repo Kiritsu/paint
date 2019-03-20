@@ -86,6 +86,6 @@ public class DrawPacket extends PacketBase {
     }
 
     public String toString() {
-        return "1 " + super.content;
+        return super.content;
     }
 }

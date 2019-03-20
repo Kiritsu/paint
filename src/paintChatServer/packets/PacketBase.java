@@ -5,7 +5,7 @@ package paintChatServer.packets;
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
  * @version 1.0
  */
-public class PacketBase {
+public abstract class PacketBase {
     /**
      * Content of the packet.
      */

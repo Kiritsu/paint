@@ -3,7 +3,9 @@ package paintChatServer;
 import paintChatServer.enums.LogLevel;
 import paintChatServer.packets.ChatPacket;
 import paintChatServer.packets.DrawPacket;
-import paintChatServer.services.ClientMessageService;
+import paintChatServer.services.ChatService;
+import paintChatServer.services.ClientMessageInputListenerService;
+import paintChatServer.services.DrawingService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -33,12 +35,22 @@ public class Client {
     /**
      * Service that will handle every packet received.
      */
-    private ClientMessageService clientMessageService;
+    private ClientMessageInputListenerService clientMessageService;
 
     /**
      * Prints packets to the remote server.
      */
     private PrintWriter writer;
+
+    /**
+     * Service that will hold every drawings.
+     */
+    private DrawingService drawing;
+
+    /**
+     * Service that will hold every message.
+     */
+    private ChatService chatting;
 
     /**
      * Creates a new client.
@@ -52,7 +64,6 @@ public class Client {
 
     /**
      * Initializes a connection to the remote server.
-     * @throws IOException
      */
     public void connect() throws IOException, InterruptedException {
         this.socket = new Socket(this.address, this.port);
@@ -60,20 +71,19 @@ public class Client {
         Logger.println(LogLevel.Info, "Client",
                 "Connected to the remote server " + this.address + ":" + this.port);
 
-        this.clientMessageService = new ClientMessageService(socket, this);
+        this.clientMessageService = new ClientMessageInputListenerService(socket, this);
         this.clientMessageService.start();
 
         this.writer = new PrintWriter(this.socket.getOutputStream());
-
-        sendMessage("Salut les gars !!!");
     }
 
     /**
      * Sends a ChatPacket to the server.
-     * @param message
+     * @param message Message to send.
      */
     public void sendMessage(String message) {
         ChatPacket packet = new ChatPacket(message);
+        chatting.add(packet);
         writer.println(packet.toString());
         writer.flush();
     }
@@ -83,6 +93,9 @@ public class Client {
      * @param packet Packet to handle.
      */
     public void updateChatUi(ChatPacket packet) {
+        chatting.add(packet);
+
+        //todo: update the GUI.
         Logger.println(LogLevel.Info, "Packet Received", "Message Received: " + packet.getMessage());
     }
 
@@ -91,6 +104,22 @@ public class Client {
      * @param packet Packet to handle.
      */
     public void updateDrawUi(DrawPacket packet) {
+        switch (packet.getDrawType()) {
+            case Circle:
+            case Square:
+            case Arrow:
+            case Text:
+                drawing.add(packet);
+                break;
+            case Eraser:
+                drawing.remove(drawing.get(packet.getX1(), packet.getY1()));
+                break;
+            case Undo:
+                drawing.undo();
+                break;
+        }
+
+        //todo: update the GUI.
         Logger.println(LogLevel.Info, "Packet Received", "Draw received: " + packet.toString());
     }
 

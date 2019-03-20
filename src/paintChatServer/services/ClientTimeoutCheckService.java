@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
  * @version 1.0
  */
-public class ClientTimeoutService extends Thread {
+public class ClientTimeoutCheckService extends Thread {
     /**
      * Server on which we'll check if every user is still connected.
      */
@@ -22,7 +22,7 @@ public class ClientTimeoutService extends Thread {
      * Creates a new instance of this service.
      * @param server Server on which we'll wait for users.
      */
-    public ClientTimeoutService(Server server) {
+    public ClientTimeoutCheckService(Server server) {
         this.server = server;
     }
 
@@ -51,6 +51,6 @@ public class ClientTimeoutService extends Thread {
             }
         }
 
-        Logger.println(LogLevel.Info, "ClientTimeout Service", "Terminating ClientTimeoutService.");
+        Logger.println(LogLevel.Info, "ClientTimeoutCheck Service", "Terminating ClientTimeoutCheckService.");
     }
 }

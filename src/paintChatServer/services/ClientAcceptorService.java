@@ -35,7 +35,7 @@ public class ClientAcceptorService extends Thread {
                 Socket socket = server.getServerSocket().accept();
                 server.addClient(socket);
 
-                ClientListenerService clientListener = new ClientListenerService(server, socket);
+                ServerClientInputListenerService clientListener = new ServerClientInputListenerService(server, socket);
                 clientListener.start();
             } catch (Exception ex) {
                 ex.printStackTrace();

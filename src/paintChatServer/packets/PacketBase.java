@@ -7,13 +7,13 @@ package paintChatServer.packets;
  */
 public abstract class PacketBase {
     /**
-     * Content of the packet.
+     * Full content of the packet.
      */
     protected String content;
 
     /**
      * Creates a new Packet.
-     * @param content
+     * @param content Full content of the packet.
      */
     public PacketBase(String content) {
         this.content = content;

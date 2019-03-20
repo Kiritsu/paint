@@ -18,7 +18,7 @@ import java.net.Socket;
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
  * @version 1.0
  */
-public class ClientListenerService extends Thread {
+public class ServerClientInputListenerService extends Thread {
     /**
      * Server on which we'll broadcast users' packets.
      */
@@ -38,7 +38,7 @@ public class ClientListenerService extends Thread {
      * Creates a new instance of this service.
      * @param server paintChatServer.Server on which we'll wait for users.
      */
-    public ClientListenerService(Server server, Socket client) throws IOException {
+    public ServerClientInputListenerService(Server server, Socket client) throws IOException {
         this.server = server;
         this.client = client;
 
@@ -71,6 +71,6 @@ public class ClientListenerService extends Thread {
             }
         }
 
-        Logger.println(LogLevel.Info, "ClientListener Service", "Terminating ClientListenerService.");
+        Logger.println(LogLevel.Info, "ServerClientInputListener Service", "Terminating ServerClientInputListenerService.");
     }
 }

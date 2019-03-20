@@ -6,7 +6,6 @@ import paintChatServer.enums.LogLevel;
 import paintChatServer.exceptions.UnknownPacketException;
 import paintChatServer.packets.ChatPacket;
 import paintChatServer.packets.DrawPacket;
-import paintChatServer.packets.PacketBase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,7 +17,7 @@ import java.net.Socket;
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
  * @version 1.0
  */
-public class ClientMessageService extends Thread {
+public class ClientMessageInputListenerService extends Thread {
     /**
      * Server that will send packets.
      */
@@ -39,7 +38,7 @@ public class ClientMessageService extends Thread {
      * @param server Server that will send packets.
      * @param client Client that will receive packets.
      */
-    public ClientMessageService(Socket server, Client client) throws IOException {
+    public ClientMessageInputListenerService(Socket server, Client client) throws IOException {
         this.server = server;
         this.client = client;
 
@@ -72,6 +71,6 @@ public class ClientMessageService extends Thread {
             }
         }
 
-        Logger.println(LogLevel.Info, "ClientMessage Service", "Terminating ClientMessageService.");
+        Logger.println(LogLevel.Info, "ClientMessage Service", "Terminating ClientMessageInputListenerService.");
     }
 }

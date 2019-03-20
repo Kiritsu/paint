@@ -7,7 +7,6 @@ package paintChatServer.enums;
  */
 public enum LogLevel {
     Info,
-    Warning,
     Error,
     Debug
 }

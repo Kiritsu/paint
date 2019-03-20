@@ -1,9 +1,11 @@
 package paintChatServer;
 
 import paintChatServer.enums.LogLevel;
+import paintChatServer.packets.ChatPacket;
+import paintChatServer.packets.DrawPacket;
 import paintChatServer.packets.PacketBase;
 import paintChatServer.services.ClientAcceptorService;
-import paintChatServer.services.ClientTimeoutService;
+import paintChatServer.services.ClientTimeoutCheckService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -35,7 +37,7 @@ public class Server {
     /**
      * Service that will handle client's timeout.
      */
-    private ClientTimeoutService clientTimeoutService;
+    private ClientTimeoutCheckService clientTimeoutService;
 
     /**
      * Indicates whether the server must be stopped.
@@ -56,12 +58,11 @@ public class Server {
      * Creates a new server.
      * @param address Address of the server.
      * @param port Port of the server.
-     * @throws IOException If an I/O error occurs when creating the socket.
      */
     public Server(String address, short port) throws IOException {
         this.clients = new ArrayList<>();
         this.clientAcceptorService = new ClientAcceptorService(this);
-        this.clientTimeoutService = new ClientTimeoutService(this);
+        this.clientTimeoutService = new ClientTimeoutCheckService(this);
 
         this.quitRequested = false;
 
@@ -75,7 +76,6 @@ public class Server {
 
     /**
      * Starts the server and starts the different services.
-     * @throws IOException If an I/O error occurs when listening.
      */
     public void startServer() throws IOException {
         this.clientAcceptorService.start();
@@ -102,15 +102,13 @@ public class Server {
 
     /**
      * Sends a packet to every other clients if a source client is specified.
+     * @param packet Packet to send.
+     * @param sourceClient Client that sent that packet.
      */
     public void broadcastPacket(PacketBase packet, Socket sourceClient) throws IOException {
         Logger.println(LogLevel.Debug, "Packet Broadcaster", "Broadcasting packet: " + packet);
 
         for (Socket client : clients) {
-            if (client.equals(sourceClient)) {
-                continue;
-            }
-
             PrintWriter output = new PrintWriter(client.getOutputStream());
             output.println(packet.toString());
             output.flush();

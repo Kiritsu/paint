@@ -1,4 +1,8 @@
-package paintChatServer;
+package paintChatServer.services;
+
+import paintChatServer.Logger;
+import paintChatServer.Server;
+import paintChatServer.enums.LogLevel;
 
 import java.net.Socket;
 
@@ -9,20 +13,20 @@ import java.net.Socket;
  */
 public class ClientAcceptorService extends Thread {
     /**
-     * paintChatServer.Server on which we'll wait for users.
+     * Server on which we'll wait for users.
      */
     private Server server;
 
     /**
      * Creates a new instance of this service.
-     * @param server paintChatServer.Server on which we'll wait for users.
+     * @param server Server on which we'll wait for users.
      */
     public ClientAcceptorService(Server server) {
         this.server = server;
     }
 
     /**
-     * Constantly check for new users connecting to our server.
+     * Constantly checking for new users connecting to our server.
      */
     @Override
     public void run() {
@@ -30,9 +34,14 @@ public class ClientAcceptorService extends Thread {
             try {
                 Socket socket = server.getServerSocket().accept();
                 server.addClient(socket);
+
+                ClientListenerService clientListener = new ClientListenerService(server, socket);
+                clientListener.start();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
+
+        Logger.println(LogLevel.Info, "ClientAcceptor Service", "Terminating ClientAcceptorService.");
     }
 }

@@ -1,8 +1,12 @@
 package paintChatServer;
 
 import paintChatServer.enums.LogLevel;
+import paintChatServer.packets.PacketBase;
+import paintChatServer.services.ClientAcceptorService;
+import paintChatServer.services.ClientTimeoutService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -66,7 +70,7 @@ public class Server {
 
         this.serverSocket = new ServerSocket(this.port);
 
-        Logger.println(LogLevel.Info, "paintChatServer.Server", "paintChatServer.Server initialized.");
+        Logger.println(LogLevel.Info, "Server", "Server initialized.");
     }
 
     /**
@@ -77,7 +81,7 @@ public class Server {
         this.clientAcceptorService.start();
         this.clientTimeoutService.start();
 
-        Logger.println(LogLevel.Info, "paintChatServer.Server", "paintChatServer.Server started.");
+        Logger.println(LogLevel.Info, "Server", "Server started.");
     }
 
     /**
@@ -88,16 +92,29 @@ public class Server {
         if (!this.clients.contains(client)) {
             this.clients.add(client);
 
-            Logger.println(LogLevel.Debug, "paintChatServer.Server",
+            Logger.println(LogLevel.Debug, "Server",
                     "A client has been added.");
         } else {
-            Logger.println(LogLevel.Error, "paintChatServer.Server",
+            Logger.println(LogLevel.Error, "Server",
                     "Unable to add a client to the ArrayList because it already contains it. (shouldn't happen.)");
         }
     }
 
-    public void broadcastPacket() {
+    /**
+     * Sends a packet to every other clients if a source client is specified.
+     */
+    public void broadcastPacket(PacketBase packet, Socket sourceClient) throws IOException {
+        Logger.println(LogLevel.Debug, "Packet Broadcaster", "Broadcasting packet: " + packet);
 
+        for (Socket client : clients) {
+            if (client.equals(sourceClient)) {
+                continue;
+            }
+
+            PrintWriter output = new PrintWriter(client.getOutputStream());
+            output.println(packet.toString());
+            output.flush();
+        }
     }
 
     /**
@@ -129,11 +146,18 @@ public class Server {
     }
 
     /**
+     * Indicates that we're going to stop the server and the clients.
+     */
+    public void shutdown() {
+        this.quitRequested = true;
+    }
+
+    /**
      * Gets a String representation of the current server.
      */
     @Override
     public String toString() {
-        return "paintChatServer.Server bound to " + address + ":" + port + " | " + clients.size() + " clients connected.";
+        return "Server bound to " + address + ":" + port + " | " + clients.size() + " clients connected.";
     }
 
     public static void main(String[] args) throws IOException {

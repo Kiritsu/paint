@@ -3,7 +3,17 @@ package paintChatServer.packets;
 import paintChatServer.enums.DrawType;
 import paintChatServer.exceptions.UnknownPacketException;
 
+/**
+ * Represents a draw packet.
+ * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
+ * @version 1.0
+ */
 public class DrawPacket extends PacketBase {
+    /**
+     * Content of the packet.
+     */
+    private String content;
+
     /**
      * Represents the type of draw.
      */
@@ -54,22 +64,28 @@ public class DrawPacket extends PacketBase {
     public DrawPacket(String content) throws UnknownPacketException {
         super(content);
 
-        if (values.length == 8) {
-            drawType = Enum.valueOf(DrawType.class, values[1]);
-            fill = !values[2].equals("0");
-            colour = Integer.parseInt(values[3], 16);
-            x1 = Integer.parseInt(values[4], 10);
-            x2 = Integer.parseInt(values[5], 10);
-            y1 = Integer.parseInt(values[6], 10);
-            y2 = Integer.parseInt(values[7], 10);
-        } else if (values.length == 6) {
-            drawType = Enum.valueOf(DrawType.class, values[1]);
+        String[] values = content.split(" ");
+
+        if (values.length == 7) {
+            drawType = Enum.valueOf(DrawType.class, values[0]);
+            fill = !values[1].equals("0");
             colour = Integer.parseInt(values[2], 16);
             x1 = Integer.parseInt(values[3], 10);
-            y1 = Integer.parseInt(values[4], 10);
-            size = Integer.parseInt(values[5], 10);
+            x2 = Integer.parseInt(values[4], 10);
+            y1 = Integer.parseInt(values[5], 10);
+            y2 = Integer.parseInt(values[6], 10);
+        } else if (values.length == 5) {
+            drawType = Enum.valueOf(DrawType.class, values[0]);
+            colour = Integer.parseInt(values[1], 16);
+            x1 = Integer.parseInt(values[2], 10);
+            y1 = Integer.parseInt(values[3], 10);
+            size = Integer.parseInt(values[4], 10);
         } else {
-            throw new UnknownPacketException("Unable to parse DrawPacket from: " + rawContent);
+            throw new UnknownPacketException("Unable to parse DrawPacket from: " + content);
         }
+    }
+
+    public String toString() {
+        return "1 " + super.content;
     }
 }

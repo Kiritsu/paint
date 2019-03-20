@@ -1,12 +1,15 @@
 package paintChatServer;
 
 import paintChatServer.enums.LogLevel;
+import paintChatServer.packets.ChatPacket;
+import paintChatServer.services.ClientMessageService;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * This class represents a paintChatServer.Client that will connect to a server and send different packets depending on the client's action.
+ * This class represents a Client that will connect to a server and send different packets depending on the client's action.
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
  * @version 1.0
  */
@@ -22,9 +25,19 @@ public class Client {
     private short port;
 
     /**
-     * paintChatServer.Server on which the client will try to connect.
+     * Server on which the client will try to connect.
      */
     private Socket socket;
+
+    /**
+     * Service that will handle every packet received.
+     */
+    private ClientMessageService clientMessageService;
+
+    /**
+     * Prints packets to the remote server.
+     */
+    private PrintWriter writer;
 
     /**
      * Creates a new client.
@@ -40,15 +53,36 @@ public class Client {
      * Initializes a connection to the remote server.
      * @throws IOException
      */
-    public void connect() throws IOException {
+    public void connect() throws IOException, InterruptedException {
         this.socket = new Socket(this.address, this.port);
-        Logger.println(LogLevel.Info, "paintChatServer.Client",
+
+        Logger.println(LogLevel.Info, "Client",
                 "Connected to the remote server " + this.address + ":" + this.port);
 
-        this.socket.close();
+        this.clientMessageService = new ClientMessageService(socket, this);
+        this.clientMessageService.start();
+
+        this.writer = new PrintWriter(this.socket.getOutputStream());
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * Sends a ChatPacket to the server.
+     * @param message
+     */
+    public void sendMessage(String message) {
+        ChatPacket packet = new ChatPacket(message);
+        writer.println(packet.toString());
+        writer.flush();
+    }
+
+    /**
+     * Method called when a packet has been received and handled in the chat.
+     */
+    public void updateChatUi(ChatPacket packet) {
+        Logger.println(LogLevel.Info, "Packet Received", "Message Received: " + packet);
+    }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
         new Client("localhost", (short) 8000).connect();
     }
 }

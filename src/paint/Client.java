@@ -1,11 +1,11 @@
-package paintChatServer;
+package paint;
 
-import paintChatServer.enums.LogLevel;
-import paintChatServer.packets.ChatPacket;
-import paintChatServer.packets.DrawPacket;
-import paintChatServer.services.ChatService;
-import paintChatServer.services.ClientMessageInputListenerService;
-import paintChatServer.services.DrawingService;
+import paint.enums.LogLevel;
+import paint.packets.ChatPacket;
+import paint.packets.DrawPacket;
+import paint.services.ChatService;
+import paint.services.ClientMessageInputListenerService;
+import paint.services.DrawingService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -96,7 +96,7 @@ public class Client {
         chatting.add(packet);
 
         //todo: update the GUI.
-        Logger.println(LogLevel.Info, "Packet Received", "Message Received: " + packet.getMessage());
+        Logger.println(LogLevel.Debug, "Packet Received", "Message Received: " + packet.getMessage());
     }
 
     /**
@@ -120,7 +120,7 @@ public class Client {
         }
 
         //todo: update the GUI.
-        Logger.println(LogLevel.Info, "Packet Received", "Draw received: " + packet.toString());
+        Logger.println(LogLevel.Debug, "Packet Received", "Draw received: " + packet.toString());
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {

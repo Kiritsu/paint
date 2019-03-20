@@ -1,6 +1,6 @@
-package paintChatServer.services;
+package paint.services;
 
-import paintChatServer.packets.ChatPacket;
+import paint.packets.ChatPacket;
 
 import java.util.ArrayList;
 

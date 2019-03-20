@@ -1,1 +1,1 @@
-paintChatServer
+paint

@@ -1,6 +1,6 @@
-package paintChatServer;
+package paint;
 
-import paintChatServer.enums.LogLevel;
+import paint.enums.LogLevel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

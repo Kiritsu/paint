@@ -1,11 +1,11 @@
-package paintChatServer.services;
+package paint.services;
 
-import paintChatServer.Client;
-import paintChatServer.Logger;
-import paintChatServer.enums.LogLevel;
-import paintChatServer.exceptions.UnknownPacketException;
-import paintChatServer.packets.ChatPacket;
-import paintChatServer.packets.DrawPacket;
+import paint.Client;
+import paint.Logger;
+import paint.enums.LogLevel;
+import paint.exceptions.UnknownPacketException;
+import paint.packets.ChatPacket;
+import paint.packets.DrawPacket;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,8 +43,6 @@ public class ClientMessageInputListenerService extends Thread {
         this.client = client;
 
         this.output = new BufferedReader(new InputStreamReader(server.getInputStream()));
-
-        Logger.println(LogLevel.Debug, "ClientMessage Service", "Checking for new packets...");
     }
 
     /**

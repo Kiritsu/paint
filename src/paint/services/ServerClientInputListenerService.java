@@ -1,12 +1,12 @@
-package paintChatServer.services;
+package paint.services;
 
-import paintChatServer.Logger;
-import paintChatServer.Server;
-import paintChatServer.enums.LogLevel;
-import paintChatServer.exceptions.UnknownPacketException;
-import paintChatServer.packets.ChatPacket;
-import paintChatServer.packets.DrawPacket;
-import paintChatServer.packets.PacketBase;
+import paint.Logger;
+import paint.Server;
+import paint.enums.LogLevel;
+import paint.exceptions.UnknownPacketException;
+import paint.packets.ChatPacket;
+import paint.packets.DrawPacket;
+import paint.packets.PacketBase;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class ServerClientInputListenerService extends Thread {
 
     /**
      * Creates a new instance of this service.
-     * @param server paintChatServer.Server on which we'll wait for users.
+     * @param server paint.Server on which we'll wait for users.
      */
     public ServerClientInputListenerService(Server server, Socket client) throws IOException {
         this.server = server;

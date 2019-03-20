@@ -1,8 +1,8 @@
-package paintChatServer.services;
+package paint.services;
 
-import paintChatServer.Logger;
-import paintChatServer.Server;
-import paintChatServer.enums.LogLevel;
+import paint.Logger;
+import paint.Server;
+import paint.enums.LogLevel;
 
 import java.net.Socket;
 import java.util.ArrayList;

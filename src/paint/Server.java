@@ -1,11 +1,9 @@
-package paintChatServer;
+package paint;
 
-import paintChatServer.enums.LogLevel;
-import paintChatServer.packets.ChatPacket;
-import paintChatServer.packets.DrawPacket;
-import paintChatServer.packets.PacketBase;
-import paintChatServer.services.ClientAcceptorService;
-import paintChatServer.services.ClientTimeoutCheckService;
+import paint.enums.LogLevel;
+import paint.packets.PacketBase;
+import paint.services.ClientAcceptorService;
+import paint.services.ClientTimeoutCheckService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -71,7 +69,7 @@ public class Server {
 
         this.serverSocket = new ServerSocket(this.port);
 
-        Logger.println(LogLevel.Info, "Server", "Server initialized.");
+        Logger.println(LogLevel.Debug, "Server", "Server initialized.");
     }
 
     /**

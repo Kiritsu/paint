@@ -1,3 +1,7 @@
+package paintChatServer;
+
+import paintChatServer.enums.LogLevel;
+
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -8,20 +12,20 @@ import java.util.ArrayList;
  */
 public class ClientTimeoutService extends Thread {
     /**
-     * Server on which we'll check if every user is still connected.
+     * paintChatServer.Server on which we'll check if every user is still connected.
      */
     private Server server;
 
     /**
      * Creates a new instance of this service.
-     * @param server Server on which we'll wait for users.
+     * @param server paintChatServer.Server on which we'll wait for users.
      */
     public ClientTimeoutService(Server server) {
         this.server = server;
     }
 
     /**
-     * Constantly check for disconnected clients. We create two copy of Server#getClients() to
+     * Constantly check for disconnected clients. We create two copy of paintChatServer.Server#getClients() to
      * avoid potential mutation errors during iteration of the ArrayList.
      */
     @Override

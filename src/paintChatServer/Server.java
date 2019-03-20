@@ -1,5 +1,8 @@
+package paintChatServer;
+
+import paintChatServer.enums.LogLevel;
+
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -63,7 +66,7 @@ public class Server {
 
         this.serverSocket = new ServerSocket(this.port);
 
-        Logger.println(LogLevel.Info, "Server", "Server initialized.");
+        Logger.println(LogLevel.Info, "paintChatServer.Server", "paintChatServer.Server initialized.");
     }
 
     /**
@@ -74,7 +77,7 @@ public class Server {
         this.clientAcceptorService.start();
         this.clientTimeoutService.start();
 
-        Logger.println(LogLevel.Info, "Server", "Server started.");
+        Logger.println(LogLevel.Info, "paintChatServer.Server", "paintChatServer.Server started.");
     }
 
     /**
@@ -85,12 +88,16 @@ public class Server {
         if (!this.clients.contains(client)) {
             this.clients.add(client);
 
-            Logger.println(LogLevel.Debug, "Server",
+            Logger.println(LogLevel.Debug, "paintChatServer.Server",
                     "A client has been added.");
         } else {
-            Logger.println(LogLevel.Error, "Server",
-                    "Unable to add a client to the ArrayList because it already contains it.");
+            Logger.println(LogLevel.Error, "paintChatServer.Server",
+                    "Unable to add a client to the ArrayList because it already contains it. (shouldn't happen.)");
         }
+    }
+
+    public void broadcastPacket() {
+
     }
 
     /**
@@ -126,7 +133,7 @@ public class Server {
      */
     @Override
     public String toString() {
-        return "Server bound to " + address + ":" + port + " | " + clients.size() + " clients connected.";
+        return "paintChatServer.Server bound to " + address + ":" + port + " | " + clients.size() + " clients connected.";
     }
 
     public static void main(String[] args) throws IOException {

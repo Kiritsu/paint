@@ -1,3 +1,5 @@
+package enums;
+
 public enum LogLevel {
     /**
      * A simple message.

@@ -1,8 +1,12 @@
+package paintChatServer;
+
+import paintChatServer.enums.LogLevel;
+
 import java.io.IOException;
 import java.net.Socket;
 
 /**
- * This class represents a Client that will connect to a server and send different packets depending on the client's action.
+ * This class represents a paintChatServer.Client that will connect to a server and send different packets depending on the client's action.
  * @author Allan Mercou, Mathieu Lagnel, Gabriel Cousin
  * @version 1.0
  */
@@ -18,7 +22,7 @@ public class Client {
     private short port;
 
     /**
-     * Server on which the client will try to connect.
+     * paintChatServer.Server on which the client will try to connect.
      */
     private Socket socket;
 
@@ -38,7 +42,7 @@ public class Client {
      */
     public void connect() throws IOException {
         this.socket = new Socket(this.address, this.port);
-        Logger.println(LogLevel.Info, "Client",
+        Logger.println(LogLevel.Info, "paintChatServer.Client",
                 "Connected to the remote server " + this.address + ":" + this.port);
 
         this.socket.close();

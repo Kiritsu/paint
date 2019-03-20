@@ -1,3 +1,5 @@
+package paintChatServer;
+
 import java.net.Socket;
 
 /**
@@ -7,13 +9,13 @@ import java.net.Socket;
  */
 public class ClientAcceptorService extends Thread {
     /**
-     * Server on which we'll wait for users.
+     * paintChatServer.Server on which we'll wait for users.
      */
     private Server server;
 
     /**
      * Creates a new instance of this service.
-     * @param server Server on which we'll wait for users.
+     * @param server paintChatServer.Server on which we'll wait for users.
      */
     public ClientAcceptorService(Server server) {
         this.server = server;

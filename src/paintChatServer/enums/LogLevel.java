@@ -1,5 +1,8 @@
-package enums;
+package paintChatServer.enums;
 
+/**
+ * Represents the kind of log.
+ */
 public enum LogLevel {
     /**
      * A simple message.

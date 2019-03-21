@@ -80,6 +80,8 @@ public class DrawPacket extends PacketBase {
         } else if (values.length == 4) {
             x1 = Integer.parseInt(values[2]);
             y1 = Integer.parseInt(values[3]);
+        } else if (values.length == 2) {
+
         } else {
             throw new UnknownPacketException("Unable to parse DrawPacket from: " + content);
         }

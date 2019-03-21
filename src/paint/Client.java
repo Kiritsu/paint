@@ -1,5 +1,6 @@
 package paint;
 
+import paint.enums.DrawType;
 import paint.enums.LogLevel;
 import paint.packets.ChatPacket;
 import paint.packets.DrawPacket;
@@ -7,6 +8,7 @@ import paint.services.ChattingService;
 import paint.services.ClientMessageInputListenerService;
 import paint.services.DrawingService;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -72,6 +74,8 @@ public class Client {
      */
     public void connect() throws IOException {
         this.frame = new ClientFrame(this);
+        this.frame.setVisible(true);
+
         this.socket = new Socket(this.address, this.port);
 
         Logger.println(LogLevel.Info, "Client",
@@ -115,7 +119,7 @@ public class Client {
         switch (packet.getDrawType()) {
             case Circle:
             case Square:
-            case Arrow:
+            case Pen:
             case Text:
                 drawing.add(packet);
                 break;
@@ -131,11 +135,38 @@ public class Client {
         Logger.println(LogLevel.Debug, "Packet Received", "Draw received: " + packet.toString());
     }
 
+    /**
+     * Changes the current user's color.
+     * @param color Color.
+     */
+    public void setCurrentColor(Color color) {
+        drawing.setCurrentColor(color);
+    }
+
+    /**
+     * Changes the current user's draw type.
+     * @param type Type of drawing.
+     */
+    public void setCurrentDrawType(DrawType type) {
+        drawing.setCurrentDrawType(type);
+    }
+
+    /**
+     * Toggles true or false the fill attribute.
+     */
+    public void toggleFill() {
+        drawing.toggleFill();
+    }
+
+    /**
+     * Sets the frame's title with the amount of users connected. This packet is only created and sent by the server.
+     * @param count Amount of users connected.
+     */
     public void setUserCount(int count) {
         this.frame.setTitle("Paint Chat Server | " + count + " utilisateurs connectés.");
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
         new Client("163.172.176.132", (short) 8000).connect();
     }
 }

@@ -1,7 +1,11 @@
 package paint.services;
 
+import paint.Logger;
+import paint.enums.DrawType;
+import paint.enums.LogLevel;
 import paint.packets.DrawPacket;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -16,9 +20,26 @@ public class DrawingService {
     private ArrayList<DrawPacket> draws;
 
     /**
+     * Current color used for this client.
+     */
+    private Color currentColor;
+
+    /**
+     * Current draw type for this client.
+     */
+    private DrawType currentDrawType;
+
+    /**
+     * Defines if we colorize the different drawings.
+     */
+    private boolean fill;
+
+    /**
      * Creates a new Drawing Service.
      */
     public DrawingService() {
+        this.currentColor = Color.black;
+        this.currentDrawType = DrawType.Pen;
         this.draws = new ArrayList<>();
     }
 
@@ -61,5 +82,47 @@ public class DrawingService {
         }
 
         return null;
+    }
+
+    /**
+     * Changes the current user's color.
+     * @param color Color.
+     */
+    public void setCurrentColor(Color color) {
+        Logger.println(LogLevel.Debug, "Drawing Service", "Changed the current color to: " + color);
+        this.currentColor = color;
+    }
+
+    /**
+     * Changes the current user's draw type.
+     * @param type Type of drawing.
+     */
+    public void setCurrentDrawType(DrawType type) {
+        Logger.println(LogLevel.Debug, "Drawing Service", "Changed the current draw type to: " + type.name());
+        this.currentDrawType = type;
+    }
+
+    /**
+     * Toggles true or false the fill attribute.
+     */
+    public void toggleFill() {
+        Logger.println(LogLevel.Debug, "Drawing Service", "Toggled fill to: " + !fill);
+        fill = !fill;
+    }
+
+    public void handleGraphics(Graphics graphics, int x1, int x2, int y1, int y2) {
+        switch (currentDrawType) {
+            case Circle:
+                break;
+            case Square:
+                break;
+            case Pen:
+                graphics.drawLine(x1, x2, y1, y2);
+                break;
+            case Eraser:
+                break;
+            case Text:
+                break;
+        }
     }
 }

@@ -43,16 +43,24 @@ public class ChattingService {
      * Updates our Label.
      */
     private void updateLabel() {
-        JLabel label = this.frame.getTchatLabel();
+        JLabel textArea = this.frame.getLabelText();
 
         StringBuilder builder = new StringBuilder();
         builder.append("<html>");
-        for (ChatPacket pck : logs) {
-            builder.append(pck.getMessage());
+
+        int i;
+        if (logs.size() < 13) {
+            i = 0;
+        } else {
+            i = logs.size() - 13;
+        }
+
+        for (; i < logs.size(); i++) {
+            builder.append(logs.get(i).getMessage());
             builder.append("<br/>");
         }
         builder.append("</html>");
 
-        label.setText(builder.toString());
+        textArea.setText(builder.toString());
     }
 }

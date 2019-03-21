@@ -8,8 +8,8 @@ package paint.enums;
 public enum DrawType {
     Circle,
     Square,
-    Arrow,
+    Pen,
     Eraser,
     Undo,
-    Text
+    Text,
 }

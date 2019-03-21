@@ -60,6 +60,8 @@ public class ClientMessageInputListenerService extends Thread {
                     case '1':
                         client.updateDrawUi(new DrawPacket(content));
                         break;
+                    case '2':
+                        client.setUserCount(Integer.parseInt(content.substring(2)));
                 }
 
             } catch (IOException e) {

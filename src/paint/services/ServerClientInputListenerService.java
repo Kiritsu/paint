@@ -20,6 +20,16 @@ import java.net.Socket;
  */
 public class ServerClientInputListenerService extends Thread {
     /**
+     * Number that define the amount of client that connected the server.
+     */
+    private static int autoIdIncrement;
+
+    /**
+     * Auto incremented id of the client.
+     */
+    private int id;
+
+    /**
      * Server on which we'll broadcast users' packets.
      */
     private Server server;
@@ -41,6 +51,7 @@ public class ServerClientInputListenerService extends Thread {
     public ServerClientInputListenerService(Server server, Socket client) throws IOException {
         this.server = server;
         this.client = client;
+        this.id = ++autoIdIncrement;
 
         this.reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
     }
@@ -50,13 +61,20 @@ public class ServerClientInputListenerService extends Thread {
      */
     @Override
     public void run() {
+        try {
+            server.broadcastPacket(new ChatPacket("0 Client " + id + " s'est connecté."), client);
+            server.sendUserCount();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         while (!server.isQuitRequested()) {
             try {
                 String content = reader.readLine();
                 PacketBase packet = null;
                 switch (content.charAt(0)) {
                     case '0':
-                        packet = new ChatPacket(content);
+                        packet = new ChatPacket("0 [Client " + id + "]: " + content.substring(2));
                         break;
                     case '1':
                         packet = new DrawPacket(content);
@@ -71,6 +89,13 @@ public class ServerClientInputListenerService extends Thread {
             }
         }
 
-        Logger.println(LogLevel.Info, "ServerClientInputListener Service", "Terminating ServerClientInputListenerService.");
+        try {
+            server.deleteClient(client);
+            server.sendUserCount();
+            server.broadcastPacket(new ChatPacket("0 Client " + id + " s'est déconnecté."), client);
+            Logger.println(LogLevel.Info, "ServerClientInputListener Service", "A client has disconnected.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

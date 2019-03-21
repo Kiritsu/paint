@@ -99,6 +99,18 @@ public class Server {
     }
 
     /**
+     * Deletes a client from the ArrayList.
+     * @param client Client to remove.
+     */
+    public void deleteClient(Socket client) {
+        if (this.clients.contains(client)) {
+            this.clients.remove(client);
+
+            Logger.println(LogLevel.Debug, "Server", "A client has disconnected.");
+        }
+    }
+
+    /**
      * Sends a packet to every other clients if a source client is specified.
      * @param packet Packet to send.
      * @param sourceClient Client that sent that packet.
@@ -109,6 +121,19 @@ public class Server {
         for (Socket client : clients) {
             PrintWriter output = new PrintWriter(client.getOutputStream());
             output.println(packet.toString());
+            output.flush();
+        }
+    }
+
+    /**
+     * Sends the current user count to every connected client.
+     */
+    public void sendUserCount() throws IOException {
+        Logger.println(LogLevel.Debug, "Server Packet Broadcaster", "Sending usercount [Packet Id: 3] ");
+
+        for (Socket client : clients) {
+            PrintWriter output = new PrintWriter(client.getOutputStream());
+            output.println("2 " + clients.size());
             output.flush();
         }
     }

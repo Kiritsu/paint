@@ -3,7 +3,7 @@ package paint;
 import paint.enums.LogLevel;
 import paint.packets.ChatPacket;
 import paint.packets.DrawPacket;
-import paint.services.ChatService;
+import paint.services.ChattingService;
 import paint.services.ClientMessageInputListenerService;
 import paint.services.DrawingService;
 
@@ -50,7 +50,12 @@ public class Client {
     /**
      * Service that will hold every message.
      */
-    private ChatService chatting;
+    private ChattingService chatting;
+
+    /**
+     * Represents the GUI instance.
+     */
+    private ClientFrame frame;
 
     /**
      * Creates a new client.
@@ -65,11 +70,15 @@ public class Client {
     /**
      * Initializes a connection to the remote server.
      */
-    public void connect() throws IOException, InterruptedException {
+    public void connect() throws IOException {
+        this.frame = new ClientFrame(this);
         this.socket = new Socket(this.address, this.port);
 
         Logger.println(LogLevel.Info, "Client",
                 "Connected to the remote server " + this.address + ":" + this.port);
+
+        this.chatting = new ChattingService(this.frame);
+        this.drawing = new DrawingService();
 
         this.clientMessageService = new ClientMessageInputListenerService(socket, this);
         this.clientMessageService.start();
@@ -82,8 +91,7 @@ public class Client {
      * @param message Message to send.
      */
     public void sendMessage(String message) {
-        ChatPacket packet = new ChatPacket(message);
-        chatting.add(packet);
+        ChatPacket packet = new ChatPacket("0 " + message);
         writer.println(packet.toString());
         writer.flush();
     }
@@ -123,7 +131,11 @@ public class Client {
         Logger.println(LogLevel.Debug, "Packet Received", "Draw received: " + packet.toString());
     }
 
+    public void setUserCount(int count) {
+        this.frame.setTitle("Paint Chat Server | " + count + " utilisateurs connectés.");
+    }
+
     public static void main(String[] args) throws IOException, InterruptedException {
-        new Client("localhost", (short) 8000).connect();
+        new Client("163.172.176.132", (short) 8000).connect();
     }
 }

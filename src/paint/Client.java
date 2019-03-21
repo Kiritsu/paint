@@ -4,6 +4,7 @@ import paint.enums.DrawType;
 import paint.enums.LogLevel;
 import paint.packets.ChatPacket;
 import paint.packets.DrawPacket;
+import paint.packets.PacketBase;
 import paint.services.ChattingService;
 import paint.services.ClientMessageInputListenerService;
 import paint.services.DrawingService;
@@ -91,11 +92,10 @@ public class Client {
     }
 
     /**
-     * Sends a ChatPacket to the server.
-     * @param message Message to send.
+     * Sends a packet to the server.
+     * @param packet Packet to send.
      */
-    public void sendMessage(String message) {
-        ChatPacket packet = new ChatPacket("0 " + message);
+    public void sendPacket(PacketBase packet) {
         writer.println(packet.toString());
         writer.flush();
     }
@@ -105,10 +105,8 @@ public class Client {
      * @param packet Packet to handle.
      */
     public void updateChatUi(ChatPacket packet) {
-        chatting.add(packet);
-
-        //todo: update the GUI.
         Logger.println(LogLevel.Debug, "Packet Received", "Message Received: " + packet.getMessage());
+        chatting.add(packet);
     }
 
     /**
@@ -116,46 +114,8 @@ public class Client {
      * @param packet Packet to handle.
      */
     public void updateDrawUi(DrawPacket packet) {
-        switch (packet.getDrawType()) {
-            case Circle:
-            case Square:
-            case Pen:
-            case Text:
-                drawing.add(packet);
-                break;
-            case Eraser:
-                drawing.remove(drawing.get(packet.getX1(), packet.getY1()));
-                break;
-            case Undo:
-                drawing.undo();
-                break;
-        }
-
-        //todo: update the GUI.
         Logger.println(LogLevel.Debug, "Packet Received", "Draw received: " + packet.toString());
-    }
-
-    /**
-     * Changes the current user's color.
-     * @param color Color.
-     */
-    public void setCurrentColor(Color color) {
-        drawing.setCurrentColor(color);
-    }
-
-    /**
-     * Changes the current user's draw type.
-     * @param type Type of drawing.
-     */
-    public void setCurrentDrawType(DrawType type) {
-        drawing.setCurrentDrawType(type);
-    }
-
-    /**
-     * Toggles true or false the fill attribute.
-     */
-    public void toggleFill() {
-        drawing.toggleFill();
+        drawing.handle(packet, frame.getPanelGraphics());
     }
 
     /**

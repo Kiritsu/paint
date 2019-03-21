@@ -1,8 +1,5 @@
 package paint.services;
 
-import paint.Logger;
-import paint.enums.DrawType;
-import paint.enums.LogLevel;
 import paint.packets.DrawPacket;
 
 import java.awt.*;
@@ -20,26 +17,9 @@ public class DrawingService {
     private ArrayList<DrawPacket> draws;
 
     /**
-     * Current color used for this client.
-     */
-    private Color currentColor;
-
-    /**
-     * Current draw type for this client.
-     */
-    private DrawType currentDrawType;
-
-    /**
-     * Defines if we colorize the different drawings.
-     */
-    private boolean fill;
-
-    /**
      * Creates a new Drawing Service.
      */
     public DrawingService() {
-        this.currentColor = Color.black;
-        this.currentDrawType = DrawType.Pen;
         this.draws = new ArrayList<>();
     }
 
@@ -59,7 +39,66 @@ public class DrawingService {
     }
 
     /**
-     * Adds a new draw.
+     * Handles a new incomming draw packet.
+     * @param packet Packet to handle.
+     * @param graphics Graphics on which we apply the packets.
+     */
+    public void handle(DrawPacket packet, Graphics graphics) {
+        switch (packet.getDrawType()) {
+            case Circle:
+                add(packet);
+                break;
+            case Square:
+                add(packet);
+                break;
+            case Pen:
+                add(packet);
+                break;
+            case Eraser:
+                remove(get(packet.getX1(), packet.getY1()));
+                break;
+            case Undo:
+                undo();
+                break;
+            case Text:
+                add(packet);
+                break;
+        }
+
+        //todo: redraw
+
+        graphics.setColor(Color.WHITE);
+        graphics.fillRect(0, 0, 5000, 5000);
+
+        for (DrawPacket draw : draws) {
+            graphics.setColor(new Color(draw.getColour()));
+
+            switch (draw.getDrawType()) {
+                case Circle:
+                    if (draw.fill()) {
+                        graphics.fillOval(draw.getX1(), draw.getY1(),draw.getX2() - draw.getX1(), draw.getY2() - draw.getY1());
+                    } else {
+                        graphics.drawOval(draw.getX1(), draw.getY1(),draw.getX2() - draw.getX1(), draw.getY2() - draw.getY1());
+                    }
+                    break;
+                case Square:
+                    if (draw.fill()) {
+                        graphics.fillRect(draw.getX1(), draw.getY1(),draw.getX2() - draw.getX1(), draw.getY2() - draw.getY1());
+                    } else {
+                        graphics.drawRect(draw.getX1(), draw.getY1(),draw.getX2() - draw.getX1(), draw.getY2() - draw.getY1());
+                    }
+                    break;
+                case Pen:
+                    graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
+                    break;
+                case Text:
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Adds a new draw and redraw the graphics.
      * @param packet Packet to add.
      */
     public void add(DrawPacket packet) {
@@ -82,47 +121,5 @@ public class DrawingService {
         }
 
         return null;
-    }
-
-    /**
-     * Changes the current user's color.
-     * @param color Color.
-     */
-    public void setCurrentColor(Color color) {
-        Logger.println(LogLevel.Debug, "Drawing Service", "Changed the current color to: " + color);
-        this.currentColor = color;
-    }
-
-    /**
-     * Changes the current user's draw type.
-     * @param type Type of drawing.
-     */
-    public void setCurrentDrawType(DrawType type) {
-        Logger.println(LogLevel.Debug, "Drawing Service", "Changed the current draw type to: " + type.name());
-        this.currentDrawType = type;
-    }
-
-    /**
-     * Toggles true or false the fill attribute.
-     */
-    public void toggleFill() {
-        Logger.println(LogLevel.Debug, "Drawing Service", "Toggled fill to: " + !fill);
-        fill = !fill;
-    }
-
-    public void handleGraphics(Graphics graphics, int x1, int x2, int y1, int y2) {
-        switch (currentDrawType) {
-            case Circle:
-                break;
-            case Square:
-                break;
-            case Pen:
-                graphics.drawLine(x1, x2, y1, y2);
-                break;
-            case Eraser:
-                break;
-            case Text:
-                break;
-        }
     }
 }

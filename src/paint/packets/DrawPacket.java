@@ -67,13 +67,13 @@ public class DrawPacket extends PacketBase {
 
         if (values.length == 8) {
             fill = !values[2].equals("0");
-            colour = Integer.parseInt(values[3], 16);
+            colour = Integer.parseInt(values[3], 10);
             x1 = Integer.parseInt(values[4], 10);
             x2 = Integer.parseInt(values[5], 10);
             y1 = Integer.parseInt(values[6], 10);
             y2 = Integer.parseInt(values[7], 10);
         } else if (values.length == 6) {
-            colour = Integer.parseInt(values[1], 16);
+            colour = Integer.parseInt(values[1], 10);
             x1 = Integer.parseInt(values[2], 10);
             y1 = Integer.parseInt(values[3], 10);
             size = Integer.parseInt(values[4], 10);
@@ -105,6 +105,14 @@ public class DrawPacket extends PacketBase {
 
     public int getY2() {
         return this.y2;
+    }
+
+    public int getColour() {
+        return this.colour;
+    }
+
+    public boolean fill() {
+        return this.fill;
     }
 
     @Override

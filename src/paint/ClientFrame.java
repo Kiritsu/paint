@@ -6,10 +6,12 @@
 package paint;
 
 import paint.enums.DrawType;
+import paint.enums.LogLevel;
+import paint.packets.ChatPacket;
+import paint.packets.DrawPacket;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -311,39 +313,85 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
         JTextField tf = (JTextField)e.getSource();
 
         if (e.getKeyCode() == 10) {
-            client.sendMessage(tf.getText());
+            client.sendPacket(new ChatPacket("0 " + tf.getText()));
             tf.setText("");
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() instanceof JButton) {
-            JButton button = (JButton)e.getSource();
+        try {
+            if (e.getSource() instanceof JButton) {
+                JButton button = (JButton)e.getSource();
 
-            if (!button.getBackground().equals(new Color(238, 238, 238))) {
-                client.setCurrentColor(button.getBackground());
-            } else {
-                if (button.equals(squareButton)) {
-                    client.setCurrentDrawType(DrawType.Square);
-                } else if (button.equals(circleButton)) {
-                    client.setCurrentDrawType(DrawType.Circle);
-                } else if (button.equals(penButton)) {
-                    client.setCurrentDrawType(DrawType.Pen);
-                } else if (button.equals(eraserButton)) {
-                    client.setCurrentDrawType(DrawType.Eraser);
-                } else if (button.equals(undoButton)) {
-                    client.setCurrentDrawType(DrawType.Undo);
-                } else if (button.equals(textButton)) {
-                    client.setCurrentDrawType(DrawType.Text);
-                } else if (button.equals(toggleFillButton)) {
-                    client.toggleFill();
+                if (!button.getBackground().equals(new Color(238, 238, 238))) {
+                    currentColour = button.getBackground().getRGB();
+                    Logger.println(LogLevel.Debug, "MouseClicked", "Changing colour: " + currentColour);
+                } else {
+                    if (button.equals(squareButton)) {
+                        currentShape = DrawType.Square;
+                    } else if (button.equals(circleButton)) {
+                        currentShape = DrawType.Circle;
+                    } else if (button.equals(penButton)) {
+                        currentShape = DrawType.Pen;
+                    } else if (button.equals(eraserButton)) {
+                        currentShape = DrawType.Eraser;
+                    } else if (button.equals(undoButton)) {
+                        client.sendPacket(new DrawPacket("1 4"));
+                    } else if (button.equals(textButton)) {
+                        currentShape = DrawType.Text;
+                    } else if (button.equals(toggleFillButton)) {
+                        fill = !fill;
+                    }
+
+                    Logger.println(LogLevel.Debug, "MouseClicked", "Changing shape: " + currentShape);
+                }
+            } else if (e.getSource() instanceof JPanel) {
+                if (clickAmount == 0) {
+                    Logger.println(LogLevel.Debug, "MouseClicked", "First click");
+
+                    clickAmount++;
+                    x1 = e.getX();
+                    y1 = e.getY();
+
+                    if (currentShape == DrawType.Pen) {
+                        client.sendPacket(new DrawPacket("1 2 1 " + currentColour + " " + x1 + " " + x1 + " " + y1 + " " + y1));
+                    } else if (currentShape == DrawType.Eraser) {
+                        client.sendPacket(new DrawPacket("1 3 " + e.getX() + " " + e.getY()));
+                    }
+
+                } else if (clickAmount == 1) {
+                    Logger.println(LogLevel.Debug, "MouseClicked", "Second click");
+
+                    clickAmount = 0;
+                    x2 = e.getX();
+                    y2 = e.getY();
+
+                    if (currentShape == DrawType.Square) {
+                        client.sendPacket(new DrawPacket("1 1 " + (fill ? 1 : 0) + " " + currentColour + " " + x1 + " " + x2 + " " + y1 + " " + y2));
+                    } else if (currentShape == DrawType.Circle) {
+                        client.sendPacket(new DrawPacket("1 0 " + (fill ? 1 : 0) + " " + currentColour + " " + x1 + " " + x2 + " " + y1 + " " + y2));
+                    }
                 }
             }
-        } else if (e.getSource() instanceof JPanel) {
-            
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
+
+    public Graphics getPanelGraphics() {
+        return panelDrawing.getGraphics();
+    }
+
+    private int clickAmount;
+    private int currentColour;
+    private DrawType currentShape;
+    private int x1;
+    private int x2;
+    private int y1;
+    private int y2;
+    private boolean fill;
+    private int size;
 
     @Override
     public void mousePressed(MouseEvent e) {}

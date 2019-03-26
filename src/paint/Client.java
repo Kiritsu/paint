@@ -115,7 +115,7 @@ public class Client {
      */
     public void updateDrawUi(DrawPacket packet) {
         Logger.println(LogLevel.Debug, "Packet Received", "Draw received: " + packet.toString());
-        drawing.handle(packet, frame.getPanelGraphics());
+        drawing.handle(packet, frame.getPanelDrawing(), frame.getPanelGraphics());
     }
 
     /**

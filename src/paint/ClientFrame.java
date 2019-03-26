@@ -382,6 +382,7 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
     public Graphics getPanelGraphics() {
         return panelDrawing.getGraphics();
     }
+    public JPanel getPanelDrawing() { return panelDrawing; }
 
     private int clickAmount;
     private int currentColour;

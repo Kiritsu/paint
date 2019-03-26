@@ -2,6 +2,7 @@ package paint.services;
 
 import paint.packets.DrawPacket;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -43,7 +44,7 @@ public class DrawingService {
      * @param packet Packet to handle.
      * @param graphics Graphics on which we apply the packets.
      */
-    public void handle(DrawPacket packet, Graphics graphics) {
+    public void handle(DrawPacket packet, JPanel pnl, Graphics graphics) {
         switch (packet.getDrawType()) {
             case Circle:
                 add(packet);
@@ -65,10 +66,7 @@ public class DrawingService {
                 break;
         }
 
-        //todo: redraw
-
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, 5000, 5000);
+        pnl.repaint();
 
         for (DrawPacket draw : draws) {
             graphics.setColor(new Color(draw.getColour()));

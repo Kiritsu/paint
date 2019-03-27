@@ -9,6 +9,7 @@ import paint.services.ChattingService;
 import paint.services.ClientMessageInputListenerService;
 import paint.services.DrawingService;
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -77,7 +78,12 @@ public class Client {
         this.frame = new ClientFrame(this);
         this.frame.setVisible(true);
 
-        this.socket = new Socket(this.address, this.port);
+        try {
+            this.socket = new Socket(this.address, this.port);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Impossible de se connecter au serveur. [" + this.address + ":" + this.port + "]");
+            System.exit(-1);
+        }
 
         Logger.println(LogLevel.Info, "Client",
                 "Connected to the remote server " + this.address + ":" + this.port);

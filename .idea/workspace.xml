@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25689aaa-85cb-4185-be7c-297f82ee9829" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/paint/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/ClientFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/services/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/DrawingService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,11 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paint/services/DrawingService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+            <state relative-caret-position="-189">
+              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
             </state>
           </provider>
         </entry>
@@ -42,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/paint/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="528">
-              <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+            <state relative-caret-position="261">
+              <caret line="83" column="128" selection-start-line="83" selection-start-column="128" selection-end-line="83" selection-end-column="128" />
             </state>
           </provider>
         </entry>
@@ -107,8 +106,8 @@
         <option value="$PROJECT_DIR$/src/paint/enums/DrawType.java" />
         <option value="$PROJECT_DIR$/src/paint/packets/DrawPacket.java" />
         <option value="$PROJECT_DIR$/src/paint/ClientFrame.java" />
-        <option value="$PROJECT_DIR$/src/paint/Client.java" />
         <option value="$PROJECT_DIR$/src/paint/services/DrawingService.java" />
+        <option value="$PROJECT_DIR$/src/paint/Client.java" />
       </list>
     </option>
   </component>
@@ -176,7 +175,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553644680061" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553644990099" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -270,14 +269,14 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.26332623" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.26332623" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.312026" />
+      <window_info active="true" anchor="bottom" id="Run" order="5" visible="true" weight="0.3118971" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -375,17 +374,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/paint/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/paint/services/DrawingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="121" column="24" selection-start-line="121" selection-start-column="24" selection-end-line="121" selection-end-column="24" />
+        <state relative-caret-position="-189">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/paint/services/DrawingService.java">
+    <entry file="file://$PROJECT_DIR$/src/paint/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
+        <state relative-caret-position="261">
+          <caret line="83" column="128" selection-start-line="83" selection-start-column="128" selection-end-line="83" selection-end-column="128" />
         </state>
       </provider>
     </entry>

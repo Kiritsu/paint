@@ -95,6 +95,8 @@ public class Client {
         this.clientMessageService.start();
 
         this.writer = new PrintWriter(this.socket.getOutputStream());
+        this.writer.println("3");
+        this.writer.flush();
     }
 
     /**
@@ -133,6 +135,6 @@ public class Client {
     }
 
     public static void main(String[] args) throws IOException {
-        new Client("163.172.176.132", (short) 8000).connect();
+        new Client(/*"163.172.176.132"*/ "localhost", (short) 8000).connect();
     }
 }

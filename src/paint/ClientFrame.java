@@ -77,8 +77,8 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
         circleButton = new JButton();
         circleButton.addMouseListener(this);
 
-        penButton = new JButton();
-        penButton.addMouseListener(this);
+        arrowButton = new JButton();
+        arrowButton.addMouseListener(this);
 
         toggleFillButton = new JButton();
         toggleFillButton.addMouseListener(this);
@@ -138,7 +138,7 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
 
         circleButton.setText("Rond");
 
-        penButton.setText("Crayon");
+        arrowButton.setText("Flèche");
 
         toggleFillButton.setText("Plein/Vide");
 
@@ -179,7 +179,7 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(circleButton)
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                                .addComponent(penButton)
+                                                                .addComponent(arrowButton)
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addComponent(eraserButton))
                                                         .addGroup(GroupLayout.Alignment.TRAILING, panelDrawingLayout.createSequentialGroup()
@@ -198,7 +198,7 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
                                 .addGroup(panelDrawingLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(squareButton)
                                         .addComponent(circleButton)
-                                        .addComponent(penButton)
+                                        .addComponent(arrowButton)
                                         .addComponent(eraserButton))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panelDrawingLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
@@ -283,7 +283,7 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
     }
 
     // Variables declaration - do not modify
-    private JButton penButton;
+    private JButton arrowButton;
     private JButton blueButton;
     private JButton circleButton;
     private JButton cyanButton;
@@ -332,8 +332,8 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
                         currentShape = DrawType.Square;
                     } else if (button.equals(circleButton)) {
                         currentShape = DrawType.Circle;
-                    } else if (button.equals(penButton)) {
-                        currentShape = DrawType.Pen;
+                    } else if (button.equals(arrowButton)) {
+                        currentShape = DrawType.Arrow;
                     } else if (button.equals(eraserButton)) {
                         currentShape = DrawType.Eraser;
                     } else if (button.equals(undoButton)) {
@@ -343,6 +343,8 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
                     } else if (button.equals(toggleFillButton)) {
                         fill = !fill;
                     }
+
+                    clickAmount = 0;
 
                     Logger.println(LogLevel.Debug, "MouseClicked", "Changing shape: " + currentShape);
                 }
@@ -354,10 +356,17 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
                     x1 = e.getX();
                     y1 = e.getY();
 
-                    if (currentShape == DrawType.Pen) {
-                        client.sendPacket(new DrawPacket("1 2 1 " + currentColour + " " + x1 + " " + x1 + " " + y1 + " " + y1));
+                    if (currentShape == DrawType.Text) {
+                        try {
+                            String text = JOptionPane.showInputDialog("Entrez le texte à écrire : ");
+
+                            client.sendPacket(new DrawPacket("1 5 " + currentColour + " " + x1 + " " + y1 + " :" + text));
+                        }
+                        catch (Exception ex) { }
+                        clickAmount = 0;
                     } else if (currentShape == DrawType.Eraser) {
                         client.sendPacket(new DrawPacket("1 3 " + e.getX() + " " + e.getY()));
+                        clickAmount = 0;
                     }
 
                 } else if (clickAmount == 1) {
@@ -371,6 +380,8 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
                         client.sendPacket(new DrawPacket("1 1 " + (fill ? 1 : 0) + " " + currentColour + " " + x1 + " " + x2 + " " + y1 + " " + y2));
                     } else if (currentShape == DrawType.Circle) {
                         client.sendPacket(new DrawPacket("1 0 " + (fill ? 1 : 0) + " " + currentColour + " " + x1 + " " + x2 + " " + y1 + " " + y2));
+                    } else if (currentShape == DrawType.Arrow) {
+                        client.sendPacket(new DrawPacket("1 2 1 " + currentColour + " " + x1 + " " + x2 + " " + y1 + " " + y2));
                     }
                 }
             }
@@ -392,7 +403,6 @@ public class ClientFrame extends JFrame implements KeyListener, MouseListener {
     private int y1;
     private int y2;
     private boolean fill;
-    private int size;
 
     @Override
     public void mousePressed(MouseEvent e) {}

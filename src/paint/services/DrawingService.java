@@ -40,7 +40,7 @@ public class DrawingService {
     }
 
     /**
-     * Handles a new incomming draw packet.
+     * Handles a new incoming draw packet.
      * @param packet Packet to handle.
      * @param graphics Graphics on which we apply the packets.
      */
@@ -52,7 +52,7 @@ public class DrawingService {
             case Square:
                 add(packet);
                 break;
-            case Pen:
+            case Arrow:
                 add(packet);
                 break;
             case Eraser:
@@ -67,6 +67,10 @@ public class DrawingService {
         }
 
         pnl.repaint();
+
+        try {
+            Thread.sleep(150);
+        } catch(Exception e){}
 
         for (DrawPacket draw : draws) {
             graphics.setColor(new Color(draw.getColour()));
@@ -86,10 +90,24 @@ public class DrawingService {
                         graphics.drawRect(draw.getX1(), draw.getY1(),draw.getX2() - draw.getX1(), draw.getY2() - draw.getY1());
                     }
                     break;
-                case Pen:
-                    graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
-                    break;
                 case Text:
+                    graphics.drawString(draw.getText(), draw.getX1(), draw.getY1());
+                    break;
+                case Arrow:
+                    graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
+                    if (draw.isXInverted()) {
+                        if (draw.isYInverted()) {
+                            graphics.fillOval(draw.getX1(), draw.getY1(), 5, 5);
+                        } else {
+                            graphics.fillOval(draw.getX1(), draw.getY2(), 5, 5);
+                        }
+                    } else {
+                        if (draw.isYInverted()) {
+                            graphics.fillOval(draw.getX2(), draw.getY1(), 5, 5);
+                        } else {
+                            graphics.fillOval(draw.getX2(), draw.getY2(), 5, 5);
+                        }
+                    }
                     break;
             }
         }

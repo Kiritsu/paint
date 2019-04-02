@@ -2,6 +2,7 @@ package paint.services.client;
 
 import paint.packets.DrawPacket;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -39,11 +40,11 @@ public class DrawingService {
     }
 
     /**
-     * Handles a new incomming draw packet.
+     * Handles a new incoming draw packet.
      * @param packet Packet to handle.
      * @param graphics Graphics on which we apply the packets.
      */
-    public void handle(DrawPacket packet, Graphics graphics) {
+    public void handle(DrawPacket packet, JPanel pnl, Graphics graphics) {
         switch (packet.getDrawType()) {
             case Circle:
                 add(packet);
@@ -51,7 +52,7 @@ public class DrawingService {
             case Square:
                 add(packet);
                 break;
-            case Pen:
+            case Arrow:
                 add(packet);
                 break;
             case Eraser:
@@ -65,10 +66,11 @@ public class DrawingService {
                 break;
         }
 
-        //todo: redraw
+        pnl.repaint();
 
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, 5000, 5000);
+        try {
+            Thread.sleep(150);
+        } catch(Exception e){}
 
         for (DrawPacket draw : draws) {
             graphics.setColor(new Color(draw.getColour()));
@@ -88,10 +90,27 @@ public class DrawingService {
                         graphics.drawRect(draw.getX1(), draw.getY1(),draw.getX2() - draw.getX1(), draw.getY2() - draw.getY1());
                     }
                     break;
-                case Pen:
-                    graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
-                    break;
                 case Text:
+                    graphics.drawString(draw.getText(), draw.getX1(), draw.getY1());
+                    break;
+                case Arrow:
+                    if (draw.isXInverted()) {
+                        if (draw.isYInverted()) {
+                            graphics.fillOval(draw.getX1(), draw.getY1(), 10, 10);
+                            graphics.drawLine(draw.getX2(), draw.getY2(), draw.getX1(), draw.getY1());
+                        } else {
+                            graphics.fillOval(draw.getX1(), draw.getY2(), 10, 10);
+                            graphics.drawLine(draw.getX1(), draw.getY2(), draw.getX2(), draw.getY1());
+                        }
+                    } else {
+                        if (draw.isYInverted()) {
+                            graphics.fillOval(draw.getX2(), draw.getY1(), 10, 10);
+                            graphics.drawLine(draw.getX2(), draw.getY1(), draw.getX1(), draw.getY2());
+                        } else {
+                            graphics.fillOval(draw.getX2(), draw.getY2(), 10, 10);
+                            graphics.drawLine(draw.getX2(), draw.getY2(), draw.getX1(), draw.getY1());
+                        }
+                    }
                     break;
             }
         }

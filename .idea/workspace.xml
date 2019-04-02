@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25689aaa-85cb-4185-be7c-297f82ee9829" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/paint/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/paint/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/paint/services/ChattingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/client/ChattingService.java" afterDir="false" />
@@ -10,6 +11,9 @@
       <change beforePath="$PROJECT_DIR$/src/paint/services/ClientTimeoutCheckService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/server/ClientTimeoutCheckService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/paint/services/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/client/DrawingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/paint/services/ServerClientInputListenerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/server/ServerClientInputListenerService.java" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/paint/services/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/DrawingService.java" afterDir="false" />
+>>>>>>> master
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,6 +25,7 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/paint/services/client/DrawingService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -29,11 +34,29 @@
                 <element signature="imports" expanded="true" />
                 <element signature="e#2991#2992#0" expanded="true" />
                 <element signature="e#3029#3030#0" expanded="true" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/paint/packets/DrawPacket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="591">
+              <caret line="96" column="33" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
+              <folding>
+                <element signature="e#2699#2700#0" expanded="true" />
+                <element signature="e#2735#2736#0" expanded="true" />
+                <element signature="e#2761#2762#0" expanded="true" />
+                <element signature="e#2791#2792#0" expanded="true" />
+                <element signature="e#3294#3295#0" expanded="true" />
+                <element signature="e#3330#3331#0" expanded="true" />
+                <element signature="e#3522#3523#0" expanded="true" />
+                <element signature="e#3559#3560#0" expanded="true" />
+                <element signature="e#3193#3194#0" expanded="true" />
+                <element signature="e#3229#3230#0" expanded="true" />
+>>>>>>> master
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paint/services/client/ChattingService.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -51,21 +74,70 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/paint/services/DrawingService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="777">
+              <caret line="110" column="89" selection-start-line="110" selection-start-column="89" selection-end-line="110" selection-end-column="89" />
+>>>>>>> master
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#4106#4107#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/paint/services/server/ClientTimeoutCheckService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
               <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/paint/ClientFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="685">
+              <caret line="390" column="5" lean-forward="true" selection-start-line="390" selection-start-column="5" selection-end-line="390" selection-end-column="5" />
+>>>>>>> master
+              <folding>
+                <element signature="e#1044#1107#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/paint/services/ClientAcceptorService.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="1615">
+              <caret line="105" column="102" selection-start-line="105" selection-start-column="102" selection-end-line="105" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="87">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+>>>>>>> master
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/paint/enums/DrawType.java">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="238">
+              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+              <folding>
+                <element signature="e#409#410#0" expanded="true" />
+                <element signature="e#439#440#0" expanded="true" />
+              </folding>
+=======
+            <state relative-caret-position="210">
+              <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -73,36 +145,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paint/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
-              <caret line="105" column="102" selection-start-line="105" selection-start-column="102" selection-end-line="105" selection-end-column="102" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/paint/packets/ChatPacket.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
-              <folding>
-                <element signature="e#409#410#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/paint/ClientFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="1615">
               <caret line="339" column="61" selection-start-line="339" selection-start-column="61" selection-end-line="339" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="510">
+              <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -110,11 +162,16 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/paint/services/client/ClientMessageInputListenerService.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="291">
               <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state>
+              <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
@@ -122,20 +179,25 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/paint/services/server/ServerClientInputListenerService.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="291">
               <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+            <state relative-caret-position="612">
+              <caret line="91" column="13" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+>>>>>>> master
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/paint/Logger.java">
+        <entry file="file://$PROJECT_DIR$/src/paint/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="2331">
+              <caret line="121" column="36" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -193,13 +255,13 @@
         <option value="$PROJECT_DIR$/src/paintchatserver/Client.java" />
         <option value="$PROJECT_DIR$/src/paint/services/ClientAcceptorService.java" />
         <option value="$PROJECT_DIR$/src/paint/services/ClientMessageInputListenerService.java" />
-        <option value="$PROJECT_DIR$/src/paint/services/ServerClientInputListenerService.java" />
-        <option value="$PROJECT_DIR$/src/paint/Server.java" />
         <option value="$PROJECT_DIR$/src/paint/services/ChattingService.java" />
         <option value="$PROJECT_DIR$/src/paint/enums/DrawType.java" />
         <option value="$PROJECT_DIR$/src/paint/Client.java" />
-        <option value="$PROJECT_DIR$/src/paint/ClientFrame.java" />
+        <option value="$PROJECT_DIR$/src/paint/Server.java" />
+        <option value="$PROJECT_DIR$/src/paint/services/ServerClientInputListenerService.java" />
         <option value="$PROJECT_DIR$/src/paint/packets/DrawPacket.java" />
+        <option value="$PROJECT_DIR$/src/paint/ClientFrame.java" />
         <option value="$PROJECT_DIR$/src/paint/services/DrawingService.java" />
         <option value="$PROJECT_DIR$/src/paint/services/server/ClientAcceptorService.java" />
         <option value="$PROJECT_DIR$/src/paint/services/server/ClientTimeoutCheckService.java" />
@@ -208,8 +270,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="396" />
-    <option name="y" value="25" />
+    <option name="x" value="-24" />
+    <option name="y" value="-13" />
     <option name="width" value="1278" />
     <option name="height" value="688" />
   </component>
@@ -221,6 +283,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+>>>>>>> master
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -281,13 +347,20 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+<<<<<<< HEAD
       <pane id="PackagesPane" />
+=======
+>>>>>>> master
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554210341417" />
+=======
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553770651329" />
+>>>>>>> master
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -374,7 +447,11 @@
     <option name="totallyTimeSpent" value="20890000" />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+=======
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+>>>>>>> master
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -382,14 +459,18 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.26332623" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.26599148" />
+>>>>>>> master
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.32827735" />
-      <window_info anchor="bottom" id="Run" order="5" weight="0.312026" />
+      <window_info anchor="bottom" id="Run" order="5" visible="true" weight="0.3118971" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -411,6 +492,18 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/paint/ClientFrame.java</url>
+          <line>40</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/paintChatServer.iml">
@@ -460,14 +553,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Logger/cs.java" />
     <entry file="jar://C:/Program Files/Java/jdk/src.zip!/java/lang/Enum.java" />
-    <entry file="file://$PROJECT_DIR$/src/paint/enums/LogLevel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paint/enums/LogLevel.java" />
     <entry file="file://$PROJECT_DIR$/src/paintChatServer/enums/PacketType.java" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/paint/exceptions/UnknownPacketException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -486,26 +574,25 @@
         </state>
       </provider>
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/src/paint/exceptions/UnknownPacketException.java" />
+    <entry file="file://$PROJECT_DIR$/src/paint/packets/PacketBase.java" />
+    <entry file="file://$PROJECT_DIR$/src/paint/Logger.java" />
+    <entry file="file://$PROJECT_DIR$/src/paint/services/ClientTimeoutCheckService.java" />
+    <entry file="file://$PROJECT_DIR$/src/paint/services/ChattingService.java" />
+    <entry file="file://$PROJECT_DIR$/src/paint/packets/ChatPacket.java" />
+>>>>>>> master
     <entry file="file://$PROJECT_DIR$/src/paint/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1904">
-          <caret line="121" column="75" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
+        <state relative-caret-position="2331">
+          <caret line="121" column="36" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4247#4248#0" expanded="true" />
-            <element signature="e#4282#4283#0" expanded="true" />
-            <element signature="e#4436#4437#0" expanded="true" />
-            <element signature="e#4491#4492#0" expanded="true" />
-            <element signature="e#4586#4587#0" expanded="true" />
-            <element signature="e#4626#4627#0" expanded="true" />
-            <element signature="e#4729#4730#0" expanded="true" />
-            <element signature="e#4770#4771#0" expanded="true" />
-            <element signature="e#4886#4887#0" expanded="true" />
-            <element signature="e#4927#4928#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/paint/enums/DrawType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -517,14 +604,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1615">
           <caret line="105" column="102" selection-start-line="105" selection-start-column="102" selection-end-line="105" selection-end-column="102" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/paint/packets/DrawPacket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="96" column="33" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
+>>>>>>> master
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2699#2700#0" expanded="true" />
+            <element signature="e#2735#2736#0" expanded="true" />
+            <element signature="e#2761#2762#0" expanded="true" />
+            <element signature="e#2791#2792#0" expanded="true" />
+            <element signature="e#3294#3295#0" expanded="true" />
+            <element signature="e#3330#3331#0" expanded="true" />
+            <element signature="e#3522#3523#0" expanded="true" />
+            <element signature="e#3559#3560#0" expanded="true" />
+            <element signature="e#3193#3194#0" expanded="true" />
+            <element signature="e#3229#3230#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paint/packets/ChatPacket.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="238">
           <caret line="15" column="14" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
           <folding>
@@ -551,11 +654,30 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="612">
+          <caret line="91" column="13" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paint/services/ClientMessageInputListenerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="36" column="42" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paint/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="98" column="28" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paint/packets/DrawPacket.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="684">
           <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
           <folding>
@@ -605,11 +727,23 @@
             <element signature="e#2991#2992#0" expanded="true" />
             <element signature="e#3029#3030#0" expanded="true" />
           </folding>
+=======
+        <state relative-caret-position="210">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/paint/services/ClientAcceptorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+>>>>>>> master
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paint/services/server/ClientAcceptorService.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="221">
           <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
           <folding>
@@ -624,16 +758,29 @@
           <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+        <state relative-caret-position="685">
+          <caret line="390" column="5" lean-forward="true" selection-start-line="390" selection-start-column="5" selection-end-line="390" selection-end-column="5" />
+          <folding>
+            <element signature="e#1044#1107#0" expanded="true" />
+>>>>>>> master
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paint/services/server/ServerClientInputListenerService.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="291">
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+=======
+        <state relative-caret-position="777">
+          <caret line="110" column="89" selection-start-line="110" selection-start-column="89" selection-end-line="110" selection-end-column="89" />
+          <folding>
+            <element signature="e#4106#4107#0" expanded="true" />
+>>>>>>> master
           </folding>
         </state>
       </provider>

@@ -8,6 +8,8 @@ import paint.services.client.ChattingService;
 import paint.services.client.ClientMessageInputListenerService;
 import paint.services.client.DrawingService;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -75,7 +77,12 @@ public class Client {
         this.frame = new ClientFrame(this);
         this.frame.setVisible(true);
 
-        this.socket = new Socket(this.address, this.port);
+        try {
+            this.socket = new Socket(this.address, this.port);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Impossible de se connecter au serveur. [" + this.address + ":" + this.port + "]");
+            System.exit(-1);
+        }
 
         Logger.println(LogLevel.Info, "Client",
                 "Connected to the remote server " + this.address + ":" + this.port);
@@ -87,6 +94,8 @@ public class Client {
         this.clientMessageService.start();
 
         this.writer = new PrintWriter(this.socket.getOutputStream());
+        this.writer.println("3");
+        this.writer.flush();
     }
 
     /**
@@ -113,7 +122,7 @@ public class Client {
      */
     public void updateDrawUi(DrawPacket packet) {
         Logger.println(LogLevel.Debug, "Packet Received", "Draw received: " + packet.toString());
-        drawing.handle(packet, frame.getPanelGraphics());
+        drawing.handle(packet, frame.getPanelDrawing(), frame.getPanelGraphics());
     }
 
     /**
@@ -125,6 +134,6 @@ public class Client {
     }
 
     public static void main(String[] args) throws IOException {
-        new Client("163.172.176.132", (short) 8000).connect();
+        new Client(/*"163.172.176.132"*/ "localhost", (short) 8000).connect();
     }
 }

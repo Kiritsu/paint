@@ -1,6 +1,7 @@
 package paint;
 
 import paint.enums.LogLevel;
+import paint.packets.DrawPacket;
 import paint.packets.PacketBase;
 import paint.services.server.ClientAcceptorService;
 import paint.services.server.ClientTimeoutCheckService;
@@ -21,6 +22,11 @@ public class Server {
      * Represents the list of every client.
      */
     private ArrayList<Socket> clients;
+
+    /**
+     * Every draw since the beginning. Used to synchronize new users.
+     */
+    private ArrayList<DrawPacket> draws;
 
     /**
      * ServerSocket that will handle client's connections and sending/receiving packets.
@@ -61,6 +67,7 @@ public class Server {
         this.clients = new ArrayList<>();
         this.clientAcceptorService = new ClientAcceptorService(this);
         this.clientTimeoutService = new ClientTimeoutCheckService(this);
+        this.draws = new ArrayList<DrawPacket>();
 
         this.quitRequested = false;
 
@@ -113,14 +120,29 @@ public class Server {
     /**
      * Sends a packet to every other clients if a source client is specified.
      * @param packet Packet to send.
-     * @param sourceClient Client that sent that packet.
      */
-    public void broadcastPacket(PacketBase packet, Socket sourceClient) throws IOException {
+    public void broadcastPacket(PacketBase packet) throws IOException {
         Logger.println(LogLevel.Debug, "Packet Broadcaster", "Broadcasting packet: " + packet);
+
+        if (packet instanceof DrawPacket) {
+            draws.add((DrawPacket)packet);
+        }
 
         for (Socket client : clients) {
             PrintWriter output = new PrintWriter(client.getOutputStream());
             output.println(packet.toString());
+            output.flush();
+        }
+    }
+
+    /**
+     * Sends every draw in the client that requested them.
+     * @param client Client that requested to be sent every drawing.
+     */
+    public void synchronizeDraws(Socket client) throws IOException {
+        PrintWriter output = new PrintWriter(client.getOutputStream());
+        for (DrawPacket packet : draws) {
+            output.println(packet);
             output.flush();
         }
     }

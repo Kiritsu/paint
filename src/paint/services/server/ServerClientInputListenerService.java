@@ -62,7 +62,7 @@ public class ServerClientInputListenerService extends Thread {
     @Override
     public void run() {
         try {
-            server.broadcastPacket(new ChatPacket("0 Client " + id + " s'est connecté."), client);
+            server.broadcastPacket(new ChatPacket("0 Client " + id + " s'est connecté."));
             server.sendUserCount();
         } catch (IOException e) {
             e.printStackTrace();
@@ -79,9 +79,12 @@ public class ServerClientInputListenerService extends Thread {
                     case '1':
                         packet = new DrawPacket(content);
                         break;
+                    case '3':
+                        server.synchronizeDraws(client);
+                        continue;
                 }
 
-                server.broadcastPacket(packet, client);
+                server.broadcastPacket(packet);
             } catch (IOException e) {
                 break;
             } catch (UnknownPacketException e) {
@@ -92,7 +95,7 @@ public class ServerClientInputListenerService extends Thread {
         try {
             server.deleteClient(client);
             server.sendUserCount();
-            server.broadcastPacket(new ChatPacket("0 Client " + id + " s'est déconnecté."), client);
+            server.broadcastPacket(new ChatPacket("0 Client " + id + " s'est déconnecté."));
             Logger.println(LogLevel.Info, "ServerClientInputListener Service", "A client has disconnected.");
         } catch (IOException e) {
             e.printStackTrace();

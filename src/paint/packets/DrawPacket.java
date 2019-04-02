@@ -45,9 +45,19 @@ public class DrawPacket extends PacketBase {
     private int y2;
 
     /**
-     * Size of the text when drawType is a Text.
+     * Text to print when drawType is a Text.
      */
-    private int size;
+    private String text;
+
+    /**
+     * Indicates if positions x1 x2 were inverted during packet deserialization.
+     */
+    private boolean xInverted;
+
+    /**
+     * Indicates wether positions y1 y2 were inverted during packet deserialization.
+     */
+    private boolean yInverted;
 
     /**
      * Creates a new packet depending on the received content.
@@ -55,7 +65,7 @@ public class DrawPacket extends PacketBase {
      *   1 [drawType (0-2)] [fill (0/1)] [colour (hexadecimal)] [x1] [x2] [y1] [y2]
      *   1 [drawType 3] [x1] [y1]
      *   1 [drawType 4]
-     *   1 [drawType 5] [colour (hexadecimal)] [x1] [y1] [size]
+     *   1 [drawType 5] [colour (hexadecimal)] [x1] [y1] :[text]
      * @param content Content of the entire packet.
      */
     public DrawPacket(String content) throws UnknownPacketException {
@@ -63,25 +73,39 @@ public class DrawPacket extends PacketBase {
 
         String[] values = content.split(" ");
 
-        drawType = DrawType.values()[Integer.valueOf(values[0])];
+        drawType = DrawType.values()[Integer.valueOf(values[1])];
 
-        if (values.length == 8) {
+        if (values.length == 8 && drawType != DrawType.Text) {
             fill = !values[2].equals("0");
             colour = Integer.parseInt(values[3], 10);
             x1 = Integer.parseInt(values[4], 10);
             x2 = Integer.parseInt(values[5], 10);
             y1 = Integer.parseInt(values[6], 10);
             y2 = Integer.parseInt(values[7], 10);
-        } else if (values.length == 6) {
-            colour = Integer.parseInt(values[1], 10);
-            x1 = Integer.parseInt(values[2], 10);
-            y1 = Integer.parseInt(values[3], 10);
-            size = Integer.parseInt(values[4], 10);
+
+            if (x1 > x2) {
+                int temp = x1;
+                x1 = x2;
+                x2 = temp;
+                xInverted = true;
+            }
+
+            if (y1 > y2) {
+                int temp = y1;
+                y1 = y2;
+                y2 = temp;
+                yInverted = true;
+            }
         } else if (values.length == 4) {
             x1 = Integer.parseInt(values[2]);
             y1 = Integer.parseInt(values[3]);
         } else if (values.length == 2) {
 
+        } else if (drawType == DrawType.Text) {
+            colour = Integer.parseInt(values[2], 10);
+            x1 = Integer.parseInt(values[3], 10);
+            y1 = Integer.parseInt(values[4], 10);
+            text = content.substring(content.indexOf(':') + 1);
         } else {
             throw new UnknownPacketException("Unable to parse DrawPacket from: " + content);
         }
@@ -113,6 +137,18 @@ public class DrawPacket extends PacketBase {
 
     public boolean fill() {
         return this.fill;
+    }
+
+    public String getText() {
+        return this.text;
+    }
+
+    public boolean isXInverted() {
+        return this.xInverted;
+    }
+
+    public boolean isYInverted() {
+        return this.yInverted;
     }
 
     @Override

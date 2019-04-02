@@ -1,15 +1,13 @@
 package paint;
 
-import paint.enums.DrawType;
 import paint.enums.LogLevel;
 import paint.packets.ChatPacket;
 import paint.packets.DrawPacket;
 import paint.packets.PacketBase;
-import paint.services.ChattingService;
-import paint.services.ClientMessageInputListenerService;
-import paint.services.DrawingService;
+import paint.services.client.ChattingService;
+import paint.services.client.ClientMessageInputListenerService;
+import paint.services.client.DrawingService;
 
-import java.awt.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;

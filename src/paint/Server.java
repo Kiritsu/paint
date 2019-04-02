@@ -2,8 +2,8 @@ package paint;
 
 import paint.enums.LogLevel;
 import paint.packets.PacketBase;
-import paint.services.ClientAcceptorService;
-import paint.services.ClientTimeoutCheckService;
+import paint.services.server.ClientAcceptorService;
+import paint.services.server.ClientTimeoutCheckService;
 
 import java.io.IOException;
 import java.io.PrintWriter;

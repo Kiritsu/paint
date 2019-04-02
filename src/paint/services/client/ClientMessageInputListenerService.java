@@ -1,4 +1,4 @@
-package paint.services;
+package paint.services.client;
 
 import paint.Client;
 import paint.Logger;

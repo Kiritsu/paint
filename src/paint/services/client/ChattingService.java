@@ -1,4 +1,4 @@
-package paint.services;
+package paint.services.client;
 
 import paint.ClientFrame;
 import paint.packets.ChatPacket;

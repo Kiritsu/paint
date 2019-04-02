@@ -1,5 +1,7 @@
 package paint.services.client;
 
+import paint.Logger;
+import paint.enums.LogLevel;
 import paint.packets.DrawPacket;
 
 import javax.swing.*;
@@ -36,6 +38,10 @@ public class DrawingService {
      * @param packet Drawing to remove.
      */
     public void remove(DrawPacket packet) {
+        if (packet == null) {
+            Logger.println(LogLevel.Debug, "Packet Remove", "No packet found at given coordinates. There are " + this.draws.size() + " packet left.");
+        }
+
         this.draws.remove(packet);
     }
 
@@ -130,7 +136,7 @@ public class DrawingService {
      * @param y Position y of the mouse.
      */
     public DrawPacket get(int x, int y) {
-        for (int i = this.draws.size() - 1; i > 0; i--) {
+        for (int i = this.draws.size() - 1; i >= 0; i--) {
             DrawPacket packet = this.draws.get(i);
             if (packet.getX1() <= x && packet.getX2() >= x) {
                 if (packet.getY1() <= y && packet.getY2() >= y) {

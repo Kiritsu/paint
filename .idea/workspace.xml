@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="25689aaa-85cb-4185-be7c-297f82ee9829" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/ClientFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/ClientFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/enums/DrawType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/enums/DrawType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/packets/DrawPacket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/packets/DrawPacket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/paint/services/DrawingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/DrawingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paint/services/ServerClientInputListenerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/paint/services/ServerClientInputListenerService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,10 +37,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/paint/services/DrawingService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="96" column="92" selection-start-line="96" selection-start-column="92" selection-end-line="96" selection-end-column="92" />
+            <state relative-caret-position="777">
+              <caret line="110" column="89" selection-start-line="110" selection-start-column="89" selection-end-line="110" selection-end-column="89" />
               <folding>
-                <element signature="e#3781#3782#0" expanded="true" />
+                <element signature="e#4106#4107#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -247,7 +240,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553770170928" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553770651329" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -515,10 +508,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/paint/services/DrawingService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="96" column="92" selection-start-line="96" selection-start-column="92" selection-end-line="96" selection-end-column="92" />
+        <state relative-caret-position="777">
+          <caret line="110" column="89" selection-start-line="110" selection-start-column="89" selection-end-line="110" selection-end-column="89" />
           <folding>
-            <element signature="e#3781#3782#0" expanded="true" />
+            <element signature="e#4106#4107#0" expanded="true" />
           </folding>
         </state>
       </provider>

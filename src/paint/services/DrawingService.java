@@ -94,18 +94,21 @@ public class DrawingService {
                     graphics.drawString(draw.getText(), draw.getX1(), draw.getY1());
                     break;
                 case Arrow:
-                    graphics.drawLine(draw.getX1(), draw.getY1(), draw.getX2(), draw.getY2());
                     if (draw.isXInverted()) {
                         if (draw.isYInverted()) {
-                            graphics.fillOval(draw.getX1(), draw.getY1(), 5, 5);
+                            graphics.fillOval(draw.getX1(), draw.getY1(), 10, 10);
+                            graphics.drawLine(draw.getX2(), draw.getY2(), draw.getX1(), draw.getY1());
                         } else {
-                            graphics.fillOval(draw.getX1(), draw.getY2(), 5, 5);
+                            graphics.fillOval(draw.getX1(), draw.getY2(), 10, 10);
+                            graphics.drawLine(draw.getX1(), draw.getY2(), draw.getX2(), draw.getY1());
                         }
                     } else {
                         if (draw.isYInverted()) {
-                            graphics.fillOval(draw.getX2(), draw.getY1(), 5, 5);
+                            graphics.fillOval(draw.getX2(), draw.getY1(), 10, 10);
+                            graphics.drawLine(draw.getX2(), draw.getY1(), draw.getX1(), draw.getY2());
                         } else {
-                            graphics.fillOval(draw.getX2(), draw.getY2(), 5, 5);
+                            graphics.fillOval(draw.getX2(), draw.getY2(), 10, 10);
+                            graphics.drawLine(draw.getX2(), draw.getY2(), draw.getX1(), draw.getY1());
                         }
                     }
                     break;

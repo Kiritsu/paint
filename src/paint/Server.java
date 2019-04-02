@@ -6,11 +6,15 @@ import paint.packets.PacketBase;
 import paint.services.server.ClientAcceptorService;
 import paint.services.server.ClientTimeoutCheckService;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a server that will accept clients and broadcast packets all over the different clients.
@@ -204,6 +208,7 @@ public class Server {
     }
 
     public static void main(String[] args) throws IOException {
-        new Server("localhost", (short) 8000).startServer();
+        Configuration config = Configuration.parse("./configuration.ini");
+        new Server(config.server, config.port).startServer();
     }
 }

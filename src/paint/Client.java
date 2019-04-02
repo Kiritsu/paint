@@ -10,9 +10,12 @@ import paint.services.client.DrawingService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 /**
  * This class represents a Client that will connect to a server and send different packets depending on the client's action.
@@ -134,6 +137,7 @@ public class Client {
     }
 
     public static void main(String[] args) throws IOException {
-        new Client(/*"163.172.176.132"*/ "localhost", (short) 8000).connect();
+        Configuration config = Configuration.parse("./configuration.ini");
+        new Client(config.server, config.port).connect();
     }
 }
